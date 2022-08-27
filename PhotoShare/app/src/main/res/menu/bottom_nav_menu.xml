@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@mipmap/zhuye"
+        android:title="@string/title_homepage" />
+
+    <item
+        android:id="@+id/navigation_dashboard"
+        android:icon="@mipmap/photo"
+        android:title="@string/title_find" />
+
+    <item
+        android:id="@+id/navigation_notifications"
+        android:icon="@mipmap/main"
+        android:title="@string/title_mine" />
+
+</menu>
