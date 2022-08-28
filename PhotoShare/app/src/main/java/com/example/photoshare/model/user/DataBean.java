@@ -1,4 +1,4 @@
-package com.example.photoshare.model;
+package com.example.photoshare.model.user;
 
 public class DataBean {
     private String id;

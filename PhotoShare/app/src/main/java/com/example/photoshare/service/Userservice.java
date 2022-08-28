@@ -1,13 +1,13 @@
 package com.example.photoshare.service;
 
-import com.example.photoshare.model.UserModel;
+import com.example.photoshare.model.user.UserModel;
 
 import retrofit2.Call;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
-public interface Userservice{
+public interface UserService{
 
     @Headers({
             "appId:f62a6fdf7e924109896fc639a7cfdcc9",

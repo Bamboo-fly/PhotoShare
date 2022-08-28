@@ -1,4 +1,6 @@
-package com.example.photoshare.model;
+package com.example.photoshare.model.user;
+
+import com.example.photoshare.model.user.DataBean;
 
 public class UserModel {
 
