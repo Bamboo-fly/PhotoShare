@@ -7,6 +7,8 @@
         <entry key="..\:/AndroidProject/PhotoShare/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidProject/PhotoShare/app/src/main/res/layout/activity_share.xml" value="0.16666666666666666" />
         <entry key="..\:/AndroidProject/PhotoShare/app/src/main/res/layout/activity_top.xml" value="0.14666666666666667" />
+        <entry key="..\:/AndroidProject/PhotoShare/app/src/main/res/layout/activity_upload.xml" value="0.3625" />
+        <entry key="..\:/AndroidProject/PhotoShare/app/src/main/res/layout/adapter_image.xml" value="0.3614583333333333" />
         <entry key="..\:/AndroidProject/PhotoShare/app/src/main/res/layout/fragment_dashboard.xml" value="0.21354166666666666" />
         <entry key="..\:/AndroidProject/PhotoShare/app/src/main/res/layout/fragment_find.xml" value="0.36666666666666664" />
         <entry key="..\:/AndroidProject/PhotoShare/app/src/main/res/layout/fragment_home.xml" value="0.36666666666666664" />
@@ -16,6 +18,8 @@
         <entry key="..\:/AndroidProject/PhotoShare/app/src/main/res/layout/newsview.xml" value="0.2630208333333333" />
         <entry key="..\:/AndroidProject/PhotoShare/app/src/main/res/menu/bottom_nav_menu.xml" value="0.21354166666666666" />
         <entry key="..\:/AndroidProject/PhotoShare/app/src/main/res/menu/bottom_navigate_main.xml" value="0.3333333333333333" />
+        <entry key="..\:/AndroidProject/PhotoShare/app/src/main/res/xml/filepaths.xml" value="0.3625" />
+        <entry key="..\:/AndroidProject/PhotoShare/app/src/main/res/xml/network_security_config.xml" value="0.18541666666666667" />
       </map>
     </option>
   </component>

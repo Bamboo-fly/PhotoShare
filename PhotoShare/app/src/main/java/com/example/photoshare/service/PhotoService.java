@@ -1,0 +1,24 @@
+package com.example.photoshare.service;
+
+import com.example.photoshare.model.loadphoto.LoadPhotoModel;
+
+import java.io.File;
+import java.util.ArrayList;
+
+import retrofit2.Call;
+import retrofit2.http.Headers;
+import retrofit2.http.POST;
+import retrofit2.http.Query;
+
+public interface PhotoService {
+
+    @Headers({
+            "appId:f62a6fdf7e924109896fc639a7cfdcc9",
+            "appSecret:33287e5eb1869eb7b4498a9a84a2211a593ff",
+            "Accept:application/json, text/plain, */*",
+            "Content-Type:application/json"
+    })
+    @POST("member/photo/image/upload")
+    Call<LoadPhotoModel> uploadphoto(@Query("fileList") ArrayList<File> fileList );
+
+}

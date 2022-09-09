@@ -50,9 +50,6 @@ dependencies {
 
     implementation 'androidx.recyclerview:recyclerview:1.0.0'
     //recyclerview依赖
-    implementation 'com.github.bumptech.glide:glide:4.10.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
-    //Glide依赖
     implementation 'com.squareup.okhttp3:okhttp:3.12.1'
     debugImplementation 'com.squareup.okhttp3:logging-interceptor:3.12.1'
     //Okhttp3依赖
@@ -63,7 +60,15 @@ dependencies {
     //Retrofit2依赖
     implementation "androidx.viewpager2:viewpager2:1.0.0"
     //导入viewpager2依赖
-    implementation 'com.google.code.gson:gson:2.8.5'//gson的依赖
+    implementation 'com.google.code.gson:gson:2.8.5'
+    //gson的依赖
+    implementation 'com.github.bumptech.glide:glide:4.10.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.10.0'
+    //Glide依赖
+    implementation 'com.github.donkingliang:ImageSelector:2.2.1'
+    //导入图片选择器依赖
+
+
 
 
 }
