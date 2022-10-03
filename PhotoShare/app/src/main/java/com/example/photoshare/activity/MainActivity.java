@@ -1,9 +1,10 @@
-package com.example.photoshare;
+package com.example.photoshare.activity;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 
 import com.example.photoshare.model.user.DataBean;
 import com.example.photoshare.model.user.UserModel;
+import com.example.photoshare.postentity.User;
 import com.example.photoshare.service.UserService;
 import com.example.photoshare.utils.RetrofitUtils;
 import com.example.photoshare.databinding.ActivityMainBinding;
@@ -40,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
           switch (msg.what){
               case SUCCESS:
                   Toast.makeText(getApplicationContext(),"登录成功",Toast.LENGTH_SHORT).show();
-                  Intent intent=new Intent(MainActivity.this,ShareActivity.class);
+                  Intent intent=new Intent(MainActivity.this, ShareActivity.class);
                   startActivity(intent);
                   break;
               case FAILURE_LOGIN:
@@ -87,6 +89,8 @@ public class MainActivity extends AppCompatActivity {
         UserService userservice= RetrofitUtils.getInstance().getRetrofit().create(UserService.class);
         Integer a=Integer.parseInt(password);
         Integer b=Integer.parseInt(username);
+//        String nam=username.toString();
+//        String pas=password.toString();
         Call<UserModel> call =userservice.login(a,b);
         //同步调用
         call.enqueue(new Callback<UserModel>() {
@@ -99,7 +103,14 @@ public class MainActivity extends AppCompatActivity {
                     if (b==200){
                         handler.sendEmptyMessage(SUCCESS);
                     }
-                    Log.e(TAG,b+"post异步请求成功");
+                    Log.e(TAG,b+"post异步请求成功"+response.body().getData().getId());
+
+                    SharedPreferences sp=getSharedPreferences("user",MODE_PRIVATE);
+                    sp.edit().putString("id",response.body().getData().getId()).apply();
+                    sp.edit().putString("name",response.body().getData().getUsername()).apply();
+                    sp.edit().putString("password", String.valueOf(response.body().getData().getPassword())).apply();
+                    //将之后需要使用的用户信息放到SharedPareced中，便于分享数据的实现
+
                 }catch (Exception e){
                     e.printStackTrace();
                 }
@@ -114,22 +125,26 @@ public class MainActivity extends AppCompatActivity {
 
        private void registered() {
         UserService userservice=RetrofitUtils.getInstance().getRetrofit().create(UserService.class);
-        Integer a=Integer.parseInt(password);
-        Integer b=Integer.parseInt(username);
-        Call<UserModel> call = userservice.register(a,b);
+        String a=password;
+        String b=username;
+
+        User user=new User();
+        user.setPassword(a);
+        user.setUsername(b);
+
+        Call<UserModel> call = userservice.register(user);
         call.enqueue(new Callback<UserModel>() {
             @Override
             public void onResponse(Call<UserModel> call, Response<UserModel> response) {
-                try {
+
                     int a =response.body().getCode();
                     //a==500是用户名已存在，a==200是注册成功
                     if (a==200){
                         handler.sendEmptyMessage(SUCCESS);
+                    }else{
+                        handler.sendEmptyMessage(FAILURE_REGISTER);
                     }
                     Log.e(TAG,"post异步请求成功"+a);
-                }catch (Exception e){
-                    e.printStackTrace();
-                }
             }
 
             @Override

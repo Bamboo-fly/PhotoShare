@@ -15,7 +15,7 @@ public interface ShareService {
             "appSecret:33287e5eb1869eb7b4498a9a84a2211a593ff"
     })
     @GET("member/photo/share")
-    Call<ShareModel> sharedate(@Query("current") int current, @Query("size") int size, @Query("userId") int userId);
+    Call<ShareModel> sharedate(@Query("current") int current, @Query("size") int size, @Query("userId") String userId);
 
 
 }

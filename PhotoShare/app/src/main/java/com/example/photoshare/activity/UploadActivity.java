@@ -1,25 +1,28 @@
-package com.example.photoshare;
+package com.example.photoshare.activity;
 
-import androidx.annotation.LongDef;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.Manifest;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.NetworkOnMainThreadException;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
-import com.donkingliang.imageselector.adapter.ImageAdapter;
 import com.donkingliang.imageselector.utils.ImageSelector;
 import com.example.photoshare.adapter.LoadImageAdapter;
 import com.example.photoshare.databinding.ActivityUploadBinding;
 import com.example.photoshare.model.loadphoto.LoadPhotoModel;
+import com.example.photoshare.model.loadphoto.UploadAll;
+import com.example.photoshare.postentity.ShareAdd;
+import com.example.photoshare.service.PhotoService;
+import com.example.photoshare.utils.RetrofitUtils;
 import com.google.gson.Gson;
 
 import java.io.File;
@@ -42,7 +45,6 @@ public class UploadActivity extends AppCompatActivity {
 
     private static final int REQUEST_CODE = 0x00000011;
     private static final int PERMISSION_WRITE_EXTERNAL_REQUEST_CODE = 0x00000012;
-
 
     private LoadImageAdapter mAdapter;
 
@@ -148,6 +150,11 @@ public class UploadActivity extends AppCompatActivity {
                         for (int i=0;i<loadPhotoModel.getData().getImageUrlList().size();i++){
                             Log.d(TAG, loadPhotoModel.getData().getImageUrlList().get(i).toString());
                         }
+
+                        SharedPreferences sp=getSharedPreferences("photo",MODE_PRIVATE);
+                        sp.edit().putString("photo_id",loadPhotoModel.getData().getImageCode()).apply();
+                        //在这里获取唯一的图片组编号，直接将两个接口合并
+
                     }
                 });
 
@@ -227,6 +234,91 @@ public class UploadActivity extends AppCompatActivity {
                         .setCropRatio(1.0f) // 图片剪切的宽高比,默认1.0f。宽固定为手机屏幕的宽。
                         .onlyTakePhoto(true)  // 仅拍照，不打开相册
                         .start(UploadActivity.this, REQUEST_CODE);
+            }
+        });
+
+        activityUploadBinding.uploadAll.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                PhotoService photoService= RetrofitUtils.getInstance().getRetrofit().create(PhotoService.class);
+
+                String title=activityUploadBinding.uploadTitle.getText().toString();
+                String content=activityUploadBinding.uploadText.getText().toString();
+                SharedPreferences sp_user=getSharedPreferences("user",MODE_PRIVATE);
+                String user_id = sp_user.getString("id","未找到用户ID");
+                SharedPreferences sp_photo=getSharedPreferences("photo",MODE_PRIVATE);
+                String photo_id = sp_photo.getString("photo_id","未找到图片ID");
+                //请求需要 内容、标题、图片ID、用户ID
+
+                Log.d(TAG, "上传图片分享的请求");
+
+                ShareAdd shareAdd=new ShareAdd();
+                shareAdd.setContent(content);
+                shareAdd.setpUserId(Double.parseDouble(user_id));
+                shareAdd.setimageCode(Double.parseDouble(photo_id));
+                shareAdd.setTitle(title);
+
+                retrofit2.Call<UploadAll> call=photoService.uploadall(shareAdd);
+                call.enqueue(new retrofit2.Callback<UploadAll>() {
+                    @Override
+                    public void onResponse(retrofit2.Call<UploadAll> call, retrofit2.Response<UploadAll> response) {
+                        if (response.body().getCode()==200){
+                            Log.d(TAG, "上传成功"+user_id);
+                            Toast toast=Toast.makeText(getApplicationContext(),"上传成功",Toast.LENGTH_SHORT);
+                            toast.show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(retrofit2.Call<UploadAll> call, Throwable t) {
+                        Log.d(TAG, "onFailure: 上传失败"+t);
+                        t.printStackTrace();
+                    }
+                });
+            }
+        });
+
+        activityUploadBinding.saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                PhotoService photoService= RetrofitUtils.getInstance().getRetrofit().create(PhotoService.class);
+
+                String title=activityUploadBinding.uploadTitle.getText().toString();
+                String content=activityUploadBinding.uploadText.getText().toString();
+                SharedPreferences sp_user=getSharedPreferences("user",MODE_PRIVATE);
+                String user_id = sp_user.getString("id","未找到用户ID");
+                SharedPreferences sp_photo=getSharedPreferences("photo",MODE_PRIVATE);
+                String photo_id = sp_photo.getString("photo_id","未找到图片ID");
+                //请求需要 内容、标题、图片ID、用户ID
+
+                Log.d(TAG, "保存草稿");
+
+                ShareAdd shareAdd=new ShareAdd();
+                shareAdd.setContent(content);
+                shareAdd.setpUserId(Double.parseDouble(user_id));
+                shareAdd.setimageCode(Double.parseDouble(photo_id));
+                shareAdd.setTitle(title);
+
+                retrofit2.Call<UploadAll> call=photoService.save_photo(shareAdd);
+                call.enqueue(new retrofit2.Callback<UploadAll>() {
+                    @Override
+                    public void onResponse(retrofit2.Call<UploadAll> call, retrofit2.Response<UploadAll> response) {
+                        if (response.body().getCode()==200){
+                            Log.d(TAG, "保存草稿成功"+user_id+" "+photo_id);
+                            Intent intent=new Intent(UploadActivity.this, ShareActivity.class);
+                            startActivity(intent);
+                            Toast toast=Toast.makeText(getApplicationContext(),"保存草稿成功",Toast.LENGTH_SHORT);
+                            toast.show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(retrofit2.Call<UploadAll> call, Throwable t) {
+                        Log.d(TAG, "onFailure: 保存草稿失败"+t);
+                        t.printStackTrace();
+                    }
+                });
             }
         });
 

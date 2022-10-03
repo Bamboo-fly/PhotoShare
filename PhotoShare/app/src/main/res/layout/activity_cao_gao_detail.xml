@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/colorTransparent_15"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".activity.CaoGaoDetailActivity">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/caogao_rv"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"
+        android:layout_below="@+id/btn_clip"
+        android:layout_marginTop="10dp" />
+
+    <EditText
+        android:id="@+id/caogao_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rv_image"
+        android:layout_marginTop="7dp"
+        android:hint="标题" />
+
+    <EditText
+        android:id="@+id/caogao_content"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_below="@+id/upload_title"
+        android:layout_marginTop="7dp"
+        android:hint="内容"
+        android:maxLines="5" />
+
+    <Button
+        android:id="@+id/caogao_fabu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/upload_text"
+        android:layout_marginTop="7dp"
+        android:text="发布动态" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

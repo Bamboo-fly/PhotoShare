@@ -17,11 +17,9 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.photoshare.R;
+import com.example.photoshare.model.minelike.MineLikeModel;
 import com.example.photoshare.model.share.RecordsBean;
-import com.example.photoshare.model.share.ShareModel;
 import com.example.photoshare.model.shoucang.ShoucangModel;
-import com.example.photoshare.postentity.CaoGao;
-import com.example.photoshare.postentity.DianZan;
 import com.example.photoshare.service.MineService;
 import com.example.photoshare.utils.RetrofitUtils;
 
@@ -32,45 +30,46 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.newsViewHolder> {
+public class MineLikeAdapter extends RecyclerView.Adapter<MineLikeAdapter.MineLikeViewHolder> {
 
-    List<RecordsBean> sharelist=new ArrayList<>();
+    List<com.example.photoshare.model.minelike.RecordsBean> sharelist=new ArrayList<>();
+    public String userid;
+
+    public Context context;
+    //传入上下文便于获得userid
 
     public static int a=0;
     public static int b=0;
 
-    public String userid;
-
-    public Context context;
-
-    private static final String TAG = "NewsAdapter";
+    private static final String TAG = "MineLikeAdapter";
 
     MineService mineService= RetrofitUtils.getInstance().getRetrofit().create(MineService.class);
 
-    public void setSharelist(List<RecordsBean> shares){
+    public void setSharelist2(List<com.example.photoshare.model.minelike.RecordsBean> shares){
         this.sharelist=shares;
     }
 
-    public NewsAdapter(Context context) {
+    public MineLikeAdapter(Context context){
         this.context=context;
     }
 
     @NonNull
     @Override
-    public newsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public MineLikeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         //定义应该构造
         LayoutInflater layoutInflater=LayoutInflater.from(parent.getContext());
         //创建卡片 参数——布局，组件组，是否是根节点
         View itemView=layoutInflater.inflate(R.layout.newsview,parent,false);
         //返回卡片组件
-        return new newsViewHolder(itemView);
+        return new MineLikeViewHolder(itemView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull newsViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        RecordsBean share=sharelist.get(position);
-        holder.name.setText(share.getUsername());
-        holder.title.setText(share.getTitle());
+    public void onBindViewHolder(@NonNull MineLikeViewHolder holder, @SuppressLint("RecyclerView") int position) {
+        com.example.photoshare.model.minelike.RecordsBean recordsBean=sharelist.get(position);
+        holder.name.setText(recordsBean.getUsername());
+        holder.title.setText(recordsBean.getTitle());
+        holder.dianzan.setImageResource(R.mipmap.zan_click);
 
         SharedPreferences sh = context.getSharedPreferences("user",0);
         userid=sh.getString("id", String.valueOf(1));
@@ -89,12 +88,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.newsViewHolder
         holder.shoucang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               a++;
-               if (a%2==1){
-                   holder.shoucang.setImageResource(R.mipmap.col_click);
-               }else{
-                   holder.shoucang.setImageResource(R.mipmap.col_unclick);
-               }
+                a++;
+                if (a%2==1){
+                    holder.shoucang.setImageResource(R.mipmap.col_click);
+                }else{
+                    holder.shoucang.setImageResource(R.mipmap.col_unclick);
+                }
 
             }
         });
@@ -103,7 +102,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.newsViewHolder
             @Override
             public void onClick(View view) {
                 b++;
-                if (b%2==1){
+                if (b%2==0){
                     holder.dianzan.setImageResource(R.mipmap.zan_click);
                     dianzan(sharelist,position);
                 }else{
@@ -112,16 +111,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.newsViewHolder
                 }
             }
         });
-
-
-        holder.itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               Toast.makeText(view.getContext(), "点击item", Toast.LENGTH_SHORT).show();
-            }
-        });
-
-
     }
 
     @Override
@@ -129,11 +118,11 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.newsViewHolder
         return sharelist.size();
     }
 
-    static class newsViewHolder extends RecyclerView.ViewHolder{
+    static class MineLikeViewHolder extends RecyclerView.ViewHolder{
         TextView name,title;
         ImageView photo;
         ImageButton dianzan,shoucang;
-        public newsViewHolder(@NonNull View itemView){
+        public MineLikeViewHolder(@NonNull View itemView){
             super(itemView);
             name=itemView.findViewById(R.id.name);
             title=itemView.findViewById(R.id.text_title);
@@ -143,7 +132,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.newsViewHolder
         }
     }
 
-    public void dianzan(List<RecordsBean> sharelist, int position){
+
+
+    public void dianzan(List<com.example.photoshare.model.minelike.RecordsBean> sharelist, int position){
         Log.d(TAG, "dianzan: "+Integer.parseInt(sharelist.get(position).getId())+" "+userid);
         Call<ShoucangModel> call=mineService.dianzan(Integer.parseInt(sharelist.get(position).getId()),userid);
         call.enqueue(new Callback<ShoucangModel>() {
@@ -160,7 +151,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.newsViewHolder
 
     }
 
-    public void undianzan(List<RecordsBean> sharelist, int position){
+    public void undianzan(List<com.example.photoshare.model.minelike.RecordsBean> sharelist, int position){
         Log.d(TAG, "undianzan: "+ sharelist.get(position).getLikeId());
 
         if (sharelist.get(position).getLikeId()==null){
@@ -179,7 +170,5 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.newsViewHolder
                 }
             });
         }
-
-
     }
 }
