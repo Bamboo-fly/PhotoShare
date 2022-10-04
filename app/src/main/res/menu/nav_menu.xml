@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <!--group标签表示以下item为一组-->
+    <group android:checkableBehavior="single">
+        <!--android:checkableBehavior="single" 设置组中item只能单选-->
+        <item
+            android:id="@+id/note_group"
+            android:title="id" />
+        <item
+            android:id="@+id/note_collect"
+            android:title="username"
+            />
+        <item
+            android:id="@+id/note_setting"
+            android:title="sex"
+            />
+    </group>
+</menu>
