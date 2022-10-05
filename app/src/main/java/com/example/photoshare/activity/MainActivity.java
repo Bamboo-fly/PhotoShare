@@ -11,9 +11,14 @@ import android.os.Looper;
 import android.os.Message;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.Toast;
 import android.view.Window;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.RequestOptions;
+import com.example.photoshare.R;
 import com.example.photoshare.model.user.DataBean;
 import com.example.photoshare.model.user.UserModel;
 import com.example.photoshare.postentity.User;
@@ -85,6 +90,15 @@ public class MainActivity extends AppCompatActivity {
                 registered();
             }
         });
+
+        ImageView imageView=findViewById(R.id.imageIcon);
+        Glide.with(this)
+                .load(R.drawable.icon)
+                .apply(RequestOptions.bitmapTransform(new CircleCrop()))
+                .into(imageView);
+
+
+
     }
 
     private void signin(){
