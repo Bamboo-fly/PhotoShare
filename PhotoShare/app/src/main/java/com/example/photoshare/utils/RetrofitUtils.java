@@ -18,6 +18,7 @@ public class RetrofitUtils {
         }
         return retrofitUtils;
     }
+
     //返回Retrofit
     public Retrofit getRetrofit() {
         Retrofit retrofit = new Retrofit.Builder()

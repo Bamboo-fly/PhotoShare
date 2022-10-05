@@ -1,7 +1,6 @@
 package com.example.photoshare.service;
 
 import com.example.photoshare.model.user.UserModel;
-import com.example.photoshare.postentity.FaBu;
 import com.example.photoshare.postentity.User;
 
 import retrofit2.Call;
@@ -10,7 +9,7 @@ import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
-public interface UserService{
+public interface Userservice {
 
     @Headers({
             "appId:f62a6fdf7e924109896fc639a7cfdcc9",

@@ -46,6 +46,7 @@ public class DashboardViewModel extends ViewModel {
     }
 
     public  void getShareDate()  {
+
         ShareService shareService= RetrofitUtils.getInstance().getRetrofit().create(ShareService.class);
         Call<ShareModel> call=shareService.sharedate(0,30,userId);
         //点赞功能无法实现是因为这里的Userid有问题
@@ -68,5 +69,7 @@ public class DashboardViewModel extends ViewModel {
                     t.printStackTrace();
             }
         });
+
+
     }
 }

@@ -16,7 +16,7 @@ import android.widget.Toast;
 import com.example.photoshare.model.user.DataBean;
 import com.example.photoshare.model.user.UserModel;
 import com.example.photoshare.postentity.User;
-import com.example.photoshare.service.UserService;
+import com.example.photoshare.service.Userservice;
 import com.example.photoshare.utils.RetrofitUtils;
 import com.example.photoshare.databinding.ActivityMainBinding;
 
@@ -86,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void signin(){
-        UserService userservice= RetrofitUtils.getInstance().getRetrofit().create(UserService.class);
+        Userservice userservice= RetrofitUtils.getInstance().getRetrofit().create(Userservice.class);
         Integer a=Integer.parseInt(password);
         Integer b=Integer.parseInt(username);
 //        String nam=username.toString();
@@ -124,7 +124,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
        private void registered() {
-        UserService userservice=RetrofitUtils.getInstance().getRetrofit().create(UserService.class);
+        Userservice userservice=RetrofitUtils.getInstance().getRetrofit().create(Userservice.class);
         String a=password;
         String b=username;
 
