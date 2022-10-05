@@ -51,7 +51,6 @@ public class LoadImageAdapter extends RecyclerView.Adapter<LoadImageAdapter.View
         } else {
             Glide.with(mContext).load(image).into(holder.ivImage);
         }
-
     }
 
     @Override

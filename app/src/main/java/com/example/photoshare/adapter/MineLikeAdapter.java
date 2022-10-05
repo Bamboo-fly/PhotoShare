@@ -69,7 +69,8 @@ public class MineLikeAdapter extends RecyclerView.Adapter<MineLikeAdapter.MineLi
         com.example.photoshare.model.minelike.RecordsBean recordsBean=sharelist.get(position);
         holder.name.setText(recordsBean.getUsername());
         holder.title.setText(recordsBean.getTitle());
-        holder.dianzan.setImageResource(R.mipmap.zan_click);
+//        holder.dianzan.setImageResource();
+        holder.dianzan.setBackgroundResource(R.mipmap.zan_click);
 
         SharedPreferences sh = context.getSharedPreferences("user",0);
         userid=sh.getString("id", String.valueOf(1));
@@ -90,9 +91,9 @@ public class MineLikeAdapter extends RecyclerView.Adapter<MineLikeAdapter.MineLi
             public void onClick(View view) {
                 a++;
                 if (a%2==1){
-                    holder.shoucang.setImageResource(R.mipmap.col_click);
+                    holder.shoucang.setBackgroundResource(R.mipmap.col_click);
                 }else{
-                    holder.shoucang.setImageResource(R.mipmap.col_unclick);
+                    holder.shoucang.setBackgroundResource(R.mipmap.col_unclick);
                 }
 
             }
@@ -103,10 +104,10 @@ public class MineLikeAdapter extends RecyclerView.Adapter<MineLikeAdapter.MineLi
             public void onClick(View view) {
                 b++;
                 if (b%2==0){
-                    holder.dianzan.setImageResource(R.mipmap.zan_click);
+                    holder.dianzan.setBackgroundResource(R.mipmap.zan_click);
                     dianzan(sharelist,position);
                 }else{
-                    holder.dianzan.setImageResource(R.mipmap.zan_unclick);
+                    holder.dianzan.setBackgroundResource(R.mipmap.zan_unclick);
                     undianzan(sharelist,position);
                 }
             }

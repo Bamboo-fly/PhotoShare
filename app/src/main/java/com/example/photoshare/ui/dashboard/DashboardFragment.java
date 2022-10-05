@@ -40,8 +40,6 @@ public class DashboardFragment extends Fragment {
         View root = binding.getRoot();
         //获取根视图
 
-
-
         binding.recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
         NewsAdapter newsAdapter=new NewsAdapter(getContext());
         binding.recyclerView.setAdapter(newsAdapter);
