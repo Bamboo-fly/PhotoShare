@@ -12,6 +12,7 @@ import android.os.Message;
 import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
+import android.view.Window;
 
 import com.example.photoshare.model.user.DataBean;
 import com.example.photoshare.model.user.UserModel;
@@ -58,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         super.onCreate(savedInstanceState);
         activityMainBinding=ActivityMainBinding.inflate(getLayoutInflater());
         View view = activityMainBinding.getRoot();

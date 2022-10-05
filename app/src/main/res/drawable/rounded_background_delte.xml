@@ -1,0 +1,16 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_selected="false">
+        <shape>
+            <!--背景-->
+            <solid android:color="#EF4B4B" />
+            <!--边框-->
+            <stroke android:width="2dp" android:color="#002196F3" />
+            <!--圆角-->
+            <corners android:radius="30dp" />
+            <!--边距-->
+            <padding android:bottom="2dp" android:left="6dp" android:right="6dp" android:top="2dp" />
+        </shape>
+    </item>
+
+</selector>

@@ -1,0 +1,32 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_selected="false">
+        <shape>
+            <!--背景-->
+            <solid android:color="#ffffff" />
+            <!--边框-->
+            <stroke android:width="2dp" android:color="@color/primary" />
+            <!--圆角-->
+            <corners android:radius="30dp" />
+            <!--边距-->
+            <padding android:bottom="2dp" android:left="6dp" android:right="6dp" android:top="2dp" />
+        </shape>
+    </item>
+
+    <item android:state_selected="true">
+        <!-- 点击时背景变灰-->
+        <shape>
+            <!--背景-->
+            <solid android:color="#48ae89" />
+            <!--梯度-->
+            <gradient android:endColor="#48ae89" android:startColor="#55C99F" />
+            <!--圆角-->
+            <corners android:radius="30dp" />
+            <!--边距-->
+            <padding android:bottom="2dp" android:left="6dp" android:right="6dp" android:top="2dp" />
+
+        </shape>
+
+    </item>
+
+</selector>
