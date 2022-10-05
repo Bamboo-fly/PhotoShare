@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:padding="10dp"
+    android:background="@color/teal_700"
+    android:layout_height="180dp">
+
+    <ImageView
+        android:id="@+id/iconImage"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:src="@mipmap/photo"
+        android:layout_centerInParent="true"
+        >
+    </ImageView>
+
+    <TextView
+        android:id="@+id/user_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="用户名: zz"
+        android:layout_above="@id/user_mail"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        >
+    </TextView>
+
+    <TextView
+        android:id="@+id/user_mail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:text="用户邮箱: 297750111@qq.com"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        >
+    </TextView>
+
+</RelativeLayout>

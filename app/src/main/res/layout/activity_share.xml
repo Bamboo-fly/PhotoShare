@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--drawerlayout 实现滑动菜单-->
+<androidx.drawerlayout.widget.DrawerLayout
+android:id="@+id/drawer_layout"
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context=".activity.ShareActivity">
+<!-- 此布局允许放入两个控件 第一个控件 主屏幕中显示的内容    -->
+<FrameLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tool_bar"
+            app:navigationIcon="@mipmap/zan_unclick"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="#4682B4"
+            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+            app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+            >
+        </androidx.appcompat.widget.Toolbar>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            android:background="?android:attr/windowBackground"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:itemHorizontalTranslationEnabled="true"
+            app:labelVisibilityMode="selected"
+            app:itemRippleColor="@color/yellow"
+            app:menu="@menu/bottom_nav_menu" />
+
+        <fragment
+            android:id="@+id/nav_host_fragment_activity_share"
+            android:name="androidx.navigation.fragment.NavHostFragment"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:defaultNavHost="true"
+            app:layout_constraintBottom_toTopOf="@id/nav_view"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tool_bar"
+            app:navGraph="@navigation/mobile_navigation" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</FrameLayout>
+<!--    第二个控件 滑动菜单中显示的内容（任意控件）-->
+<com.google.android.material.navigation.NavigationView
+    android:id="@+id/navView"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="start"
+    app:menu="@menu/nav_menu"
+    app:headerLayout="@layout/nav_header"
+    >
+</com.google.android.material.navigation.NavigationView>
+<!--通过app:menu和app:headerLayout属性将刚刚准备的menu和headerLayout设置进去-->
+<!--
+android:layout_gravity="start"
+告诉滑动菜单在左在右
+start 属性自动判断
+英语、汉语，滑动菜单在左边-->
+<!--
+?attr/actionBarSize => @dimen/mtrl_toolbar_default_height => 56dp
+android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
+使toolbar单独使用深色主题(因为浅色主题的toolbar文字是黑色的，不好看)
+app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+使toolbar的弹出菜单使用浅色主题
+-->
+</androidx.drawerlayout.widget.DrawerLayout>

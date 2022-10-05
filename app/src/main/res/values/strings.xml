@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">PhotoShare</string>
+    <string name="title_homepage">首页</string>
+    <string name="title_find">发现</string>
+    <string name="title_mine">我</string>
+    <string name="hello_blank_fragment">我</string>
+    <string name="title_activity_share">ShareActivity</string>
+    <string name="main_email_hint">请输入帐号</string>
+    <string name="main_password_hint">请输入密码</string>
+    <string name="login">登  录</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+</resources>
