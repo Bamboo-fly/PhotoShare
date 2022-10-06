@@ -9,7 +9,7 @@ import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
-public interface Userservice {
+public interface UserService {
 
     @Headers({
             "appId:f62a6fdf7e924109896fc639a7cfdcc9",
