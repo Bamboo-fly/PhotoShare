@@ -22,13 +22,21 @@ tools:context=".activity.ShareActivity">
         >
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/tool_bar"
-            app:navigationIcon="@mipmap/zan_unclick"
+            app:navigationIcon="@drawable/ic_baseline_person_24"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#4682B4"
+            android:background="@color/green_500"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            tools:ignore="MissingConstraints">
+            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="纷 享"
+                android:textSize="20dp"
+                android:textColor="@color/white">
+            </TextView>
         </androidx.appcompat.widget.Toolbar>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView

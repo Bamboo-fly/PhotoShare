@@ -67,6 +67,7 @@ dependencies {
     //Glide依赖
     implementation 'com.github.donkingliang:ImageSelector:2.2.1'
     //导入图片选择器依赖
+    implementation 'de.hdodenhof:circleimageview:2.1.0'
 
 
 }
