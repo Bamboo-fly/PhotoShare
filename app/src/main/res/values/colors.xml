@@ -12,4 +12,8 @@
     <color name="yellow">#f4ea2a</color>
     <color name="gray">#D7D7D7</color>
     <color name="colorTransparent_15">#D9ffffff</color>
+
+    <color name="profile_start_green">#48AC87</color>
+    <color name="profile_center_green">#37A17A</color>
+    <color name="profile_end_green">#2A9971</color>
 </resources>
