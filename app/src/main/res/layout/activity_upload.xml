@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <androidx.appcompat.widget.LinearLayoutCompat
         android:id="@+id/image_mode"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -16,33 +16,39 @@
 
         <Button
             android:id="@+id/btn_clip"
-            android:layout_width="123dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:textSize="20sp"
-            android:text="单选" />
+            android:text="单选"
+            android:layout_weight="1"
+            tools:ignore="MissingConstraints" />
 
         <Button
             android:id="@+id/btn_unlimited"
-            android:layout_width="123dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:layout_marginLeft="5dp"
             android:text="多选"
-            app:layout_constraintLeft_toRightOf="@id/btn_clip"/>
+            android:layout_weight="1"
+            app:layout_constraintLeft_toRightOf="@id/btn_clip"
+            tools:ignore="MissingConstraints" />
 
         <Button
             android:id="@+id/btn_take_and_clip"
-            android:layout_width="123dp"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:textColor="@color/white"
             android:textSize="20sp"
             android:layout_marginLeft="5dp"
             android:text="拍照"
-            app:layout_constraintLeft_toRightOf="@id/btn_unlimited"/>
+            android:layout_weight="1"
+            app:layout_constraintLeft_toRightOf="@id/btn_unlimited"
+            tools:ignore="MissingConstraints" />
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.appcompat.widget.LinearLayoutCompat>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_image"

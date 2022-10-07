@@ -8,6 +8,9 @@ import android.view.Window;
 import android.widget.Toast;
 
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.RequestOptions;
 import com.example.photoshare.R;
 import com.example.photoshare.ui.notifications.NotificationsViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -72,6 +75,8 @@ public class ShareActivity extends AppCompatActivity {
         getSupportActionBar().setTitle(R.string.emptytext);
         //设置 note_group为默认选中
         navView.setCheckedItem(R.id.note_group);
+
+
     }
 
     private void listen() {
