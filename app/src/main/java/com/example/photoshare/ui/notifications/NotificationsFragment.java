@@ -17,6 +17,10 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.RequestOptions;
+import com.example.photoshare.R;
 import com.example.photoshare.activity.AddShareActivity;
 import com.example.photoshare.activity.UploadActivity;
 import com.example.photoshare.adapter.MinePhotoAdapter;
@@ -46,6 +50,11 @@ public class NotificationsFragment extends Fragment {
 
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+        Glide.with(this)
+                .load(R.drawable.icon)
+                .apply(RequestOptions.bitmapTransform(new CircleCrop()))
+                .into(binding.avatarIcon);
 
         binding.upload.setOnClickListener(new View.OnClickListener() {
             @Override

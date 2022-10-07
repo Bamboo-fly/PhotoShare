@@ -28,7 +28,7 @@ tools:context=".activity.ShareActivity">
             android:background="#4682B4"
             android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
             app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-            >
+            tools:ignore="MissingConstraints">
         </androidx.appcompat.widget.Toolbar>
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
