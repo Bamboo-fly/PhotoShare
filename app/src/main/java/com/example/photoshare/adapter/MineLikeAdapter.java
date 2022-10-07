@@ -162,7 +162,7 @@ public class MineLikeAdapter extends RecyclerView.Adapter<MineLikeAdapter.MineLi
             call.enqueue(new Callback<ShoucangModel>() {
                 @Override
                 public void onResponse(Call<ShoucangModel> call, Response<ShoucangModel> response) {
-                    Log.d(TAG, "onResponse: "+response.body().getMsg());
+                    Log.d(TAG, "onResponse: "+response.body().getMsg());  //得到body,然后转换为字符串
                 }
 
                 @Override

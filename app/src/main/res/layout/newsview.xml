@@ -9,10 +9,10 @@
     android:orientation="vertical">
     <androidx.appcompat.widget.LinearLayoutCompat
         android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginHorizontal="1dp"
-        android:layout_marginVertical="1.5dp"
+        android:layout_marginHorizontal="0dp"
+        android:layout_marginVertical="0dp"
         android:background="@drawable/card"
         >
         <ImageView
@@ -24,7 +24,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical"
             android:background="@drawable/card_bottom"
             >

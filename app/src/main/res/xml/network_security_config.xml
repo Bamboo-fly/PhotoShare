@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <network-security-config>
-
+<!--    这句必须有否则http的请求无法发送-->
+<!--    配置完成后,还要在manifests进行引用-->
     <base-config cleartextTrafficPermitted="true" />
 
 </network-security-config>
