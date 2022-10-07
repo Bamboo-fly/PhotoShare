@@ -15,12 +15,8 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.GridLayoutManager;
 
-import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.CircleCrop;
-import com.bumptech.glide.request.RequestOptions;
-import com.example.photoshare.R;
 import com.example.photoshare.activity.AddShareActivity;
 import com.example.photoshare.activity.UploadActivity;
 import com.example.photoshare.adapter.MinePhotoAdapter;
@@ -51,11 +47,6 @@ public class NotificationsFragment extends Fragment {
         binding = FragmentNotificationsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        Glide.with(this)
-                .load(R.drawable.icon)
-                .apply(RequestOptions.bitmapTransform(new CircleCrop()))
-                .into(binding.avatarIcon);
-
         binding.upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -72,7 +63,7 @@ public class NotificationsFragment extends Fragment {
             }
         });
 
-        binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
         MinePhotoAdapter minePhotoAdapter=new MinePhotoAdapter();
         binding.recyclerView.setAdapter(minePhotoAdapter);
         notificationsViewModel.getArryList().observe(getViewLifecycleOwner(), new Observer<List<RecordsBean>>() {

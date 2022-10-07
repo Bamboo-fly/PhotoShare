@@ -69,8 +69,7 @@ public class ShareActivity extends AppCompatActivity {
         setSupportActionBar(tool_bar);
         //显示 tool_bar左侧按钮
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //设置 tool_bar左侧按钮图标
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_dashboard_black_24dp);
+        getSupportActionBar().setTitle(R.string.emptytext);
         //设置 note_group为默认选中
         navView.setCheckedItem(R.id.note_group);
     }
