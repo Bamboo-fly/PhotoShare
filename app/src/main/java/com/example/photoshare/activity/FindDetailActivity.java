@@ -16,6 +16,8 @@ import com.example.photoshare.adapter.PinlunOneAdapter;
 import com.example.photoshare.databinding.ActivityFindDetailBinding;
 import com.example.photoshare.model.fabu.FabuModel;
 import com.example.photoshare.model.pinlun1.PinLunOneModel;
+import com.example.photoshare.model.pinlunback.PinLunBackModel;
+import com.example.photoshare.postentity.PinLun;
 import com.example.photoshare.service.PhotoService;
 import com.example.photoshare.service.ShareService;
 import com.example.photoshare.utils.RetrofitUtils;
@@ -58,9 +60,33 @@ public class FindDetailActivity extends AppCompatActivity {
         activityFindDetailBinding.addPinlun.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent1=new Intent(FindDetailActivity.this,PinlunActivity.class);
-                intent1.putExtra("id",sharedate);
-                startActivity(intent1);
+
+                PinLun pinLun=new PinLun();
+                pinLun.setContent(activityFindDetailBinding.pinlunContent.getText().toString());
+                pinLun.setUserName("Umbrella".toString());
+                pinLun.setUserId(user_id);
+                Intent intent=getIntent();
+                pinLun.setShareId("12");
+                Log.d(TAG, ""+user_id+" "+intent.getStringExtra("id"));
+
+                ShareService shareService= RetrofitUtils.getInstance().getRetrofit().create(ShareService.class);
+                Call<PinLunBackModel> call=shareService.pinlunfabiao(pinLun);
+                call.enqueue(new Callback<PinLunBackModel>() {
+                    @Override
+                    public void onResponse(Call<PinLunBackModel> call, Response<PinLunBackModel> response) {
+                        if (response.body().getCode()==200){
+                            Toast.makeText(FindDetailActivity.this, "评论成功", Toast.LENGTH_SHORT).show();
+                            Intent intent1=new Intent(FindDetailActivity.this,FindDetailActivity.class);
+                            intent1.putExtra("id",intent.getStringExtra("id"));
+                            startActivity(intent1);
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<PinLunBackModel> call, Throwable t) {
+
+                    }
+                });
             }
         });
     }
