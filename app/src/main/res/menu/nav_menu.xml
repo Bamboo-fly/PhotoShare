@@ -5,14 +5,14 @@
         <!--android:checkableBehavior="single" 设置组中item只能单选-->
         <item
             android:id="@+id/note_group"
-            android:title="id" />
+            android:title="ID"/>
         <item
             android:id="@+id/note_collect"
-            android:title="username"
+            android:title="用户名"
             />
         <item
             android:id="@+id/note_setting"
-            android:title="sex"
+            android:title="性别"
             />
     </group>
 </menu>

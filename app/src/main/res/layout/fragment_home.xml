@@ -12,6 +12,23 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/profile_tab"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/upper_rounded_backgroud"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toTopOf="@id/recyclerView"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tabGravity="center"
+            app:tabIndicatorColor="#333333"
+            app:tabPaddingEnd="40dp"
+            app:tabPaddingStart="40dp"
+            app:tabSelectedTextColor="#333333"
+            app:tabTextColor="#AFAFAF" />
+
         <Button
             android:id="@+id/guanzhu"
             android:layout_width="0dp"
