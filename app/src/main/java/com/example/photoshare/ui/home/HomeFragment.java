@@ -14,17 +14,21 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 
+import com.example.photoshare.R;
 import com.example.photoshare.activity.GuanZhuActivity;
 import com.example.photoshare.activity.ShouCangActivity;
 import com.example.photoshare.adapter.MineLikeAdapter;
 import com.example.photoshare.adapter.NewsAdapter;
 import com.example.photoshare.databinding.FragmentHomeBinding;
 import com.example.photoshare.model.share.RecordsBean;
+import com.google.android.material.tabs.TabLayout;
 
 import java.util.List;
 
 public class HomeFragment extends Fragment {
-
+    private String[] tabTitle = {"动态", "收藏", "赞过"};
+    private TabLayout profileTab;
+    private View profileView;
     private FragmentHomeBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -50,6 +54,9 @@ public class HomeFragment extends Fragment {
                 mineLikeAdapter.notifyDataSetChanged();
             }
         });
+
+//        profileView = inflater.inflate(R.layout.fragment_home, container, false);
+//        profileTab = profileView.findViewById(R.id.profile_tab);
 
         binding.shoucang.setOnClickListener(new View.OnClickListener() {
             @Override
