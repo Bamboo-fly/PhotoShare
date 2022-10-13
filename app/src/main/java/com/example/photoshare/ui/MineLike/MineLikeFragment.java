@@ -1,4 +1,4 @@
-package com.example.photoshare.ui.home;
+package com.example.photoshare.ui.MineLike;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -14,21 +13,15 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 
-import com.example.photoshare.R;
 import com.example.photoshare.activity.GuanZhuActivity;
 import com.example.photoshare.activity.ShouCangActivity;
 import com.example.photoshare.adapter.MineLikeAdapter;
-import com.example.photoshare.adapter.NewsAdapter;
 import com.example.photoshare.databinding.FragmentHomeBinding;
-import com.example.photoshare.model.share.RecordsBean;
-import com.google.android.material.tabs.TabLayout;
 
 import java.util.List;
 
-public class HomeFragment extends Fragment {
-    private String[] tabTitle = {"动态", "收藏", "赞过"};
-    private TabLayout profileTab;
-    private View profileView;
+public class MineLikeFragment extends Fragment {
+
     private FragmentHomeBinding binding;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -37,8 +30,8 @@ public class HomeFragment extends Fragment {
         SharedPreferences sh=getActivity().getSharedPreferences("user",0);
         String user_id = sh.getString("id","未找到用户ID");
 
-        HomeViewModel homeViewModel =
-                new ViewModelProvider(this,new HomeViewModelFactoyr(user_id)).get(HomeViewModel.class);
+        MineLikeViewModel mineLikeViewModel =
+                new ViewModelProvider(this,new MineLikeViewModelFactoyr(user_id)).get(MineLikeViewModel.class);
         //使fragment与ViewModel绑定，数据获取与页面处理结合
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
@@ -47,16 +40,13 @@ public class HomeFragment extends Fragment {
         binding.recyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
         MineLikeAdapter mineLikeAdapter=new MineLikeAdapter(getContext());
         binding.recyclerView.setAdapter(mineLikeAdapter);
-        homeViewModel.getArryList().observe(getViewLifecycleOwner(), new Observer<List<com.example.photoshare.model.minelike.RecordsBean>>() {
+        mineLikeViewModel.getArryList().observe(getViewLifecycleOwner(), new Observer<List<com.example.photoshare.model.minelike.RecordsBean>>() {
             @Override
             public void onChanged(List<com.example.photoshare.model.minelike.RecordsBean> recordsBeans) {
                 mineLikeAdapter.setSharelist2(recordsBeans);
                 mineLikeAdapter.notifyDataSetChanged();
             }
         });
-
-//        profileView = inflater.inflate(R.layout.fragment_home, container, false);
-//        profileTab = profileView.findViewById(R.id.profile_tab);
 
         binding.shoucang.setOnClickListener(new View.OnClickListener() {
             @Override

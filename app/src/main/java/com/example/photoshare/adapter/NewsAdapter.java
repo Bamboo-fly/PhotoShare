@@ -92,12 +92,14 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.newsViewHolder
         holder.shoucang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               a++;
-               if (a%2==1){
-                   holder.shoucang.setImageResource(R.mipmap.col_click);
-               }else{
-                   holder.shoucang.setImageResource(R.mipmap.col_unclick);
-               }
+                a++;
+                if (a%2==1){
+                    holder.shoucang.setImageResource(R.mipmap.col_click);
+                    collected(sharelist,position);
+                }else{
+                    holder.shoucang.setImageResource(R.mipmap.col_unclick);
+                    uncollected(sharelist,position);
+                }
 
             }
         });
@@ -119,10 +121,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.newsViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-               Intent intent =new Intent(holder.itemView.getContext(), FindDetailActivity.class);
-               intent.putExtra("id",share.getId());
+                Intent intent =new Intent(holder.itemView.getContext(), FindDetailActivity.class);
+                intent.putExtra("id",share.getId());
                 Log.d(TAG, "onClick: "+share.getId());
-               holder.itemView.getContext().startActivity(intent);
+                holder.itemView.getContext().startActivity(intent);
             }
         });
     }
@@ -152,7 +154,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.newsViewHolder
         call.enqueue(new Callback<ShoucangModel>() {
             @Override
             public void onResponse(Call<ShoucangModel> call, Response<ShoucangModel> response) {
-                Log.d(TAG, "onResponse: "+"收藏成功"+response.body().getMsg()+" "+sharelist.get(position).getLikeId());
+                Log.d(TAG, "onResponse: "+"点赞成功"+response.body().getMsg()+" "+sharelist.get(position).getLikeId());
             }
 
             @Override
@@ -178,11 +180,42 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.newsViewHolder
 
                 @Override
                 public void onFailure(Call<ShoucangModel> call, Throwable t) {
+                    Log.d(TAG, "取消点赞失败");
 
                 }
             });
         }
-
-
     }
+
+
+    public void collected(List<RecordsBean> sharelist,int position){
+        Call<ShoucangModel> call=mineService.collect(Integer.parseInt(sharelist.get(position).getId()),userid);
+        call.enqueue(new Callback<ShoucangModel>() {
+            @Override
+            public void onResponse(Call<ShoucangModel> call, Response<ShoucangModel> response) {
+                Log.d(TAG, "收藏成功");
+            }
+
+            @Override
+            public void onFailure(Call<ShoucangModel> call, Throwable t) {
+                Log.d(TAG, "收藏失败");
+            }
+        });
+    }
+
+    public void uncollected(List<RecordsBean> sharelist,int position){
+        Call<ShoucangModel> call=mineService.uncollect((String) sharelist.get(position).getCollectId());
+        call.enqueue(new Callback<ShoucangModel>() {
+            @Override
+            public void onResponse(Call<ShoucangModel> call, Response<ShoucangModel> response) {
+                Log.d(TAG, "取消收藏成功");
+            }
+
+            @Override
+            public void onFailure(Call<ShoucangModel> call, Throwable t) {
+                Log.d(TAG, "取消收藏失败");
+            }
+        });
+    }
+
 }

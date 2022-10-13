@@ -1,11 +1,10 @@
-package com.example.photoshare.ui.home;
+package com.example.photoshare.ui.MineLike;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.photoshare.model.minelike.MineLikeModel;
-import com.example.photoshare.model.share.RecordsBean;
 import com.example.photoshare.service.MineService;
 import com.example.photoshare.utils.RetrofitUtils;
 
@@ -16,7 +15,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HomeViewModel extends ViewModel {
+public class MineLikeViewModel extends ViewModel {
 
     private final MutableLiveData<List<com.example.photoshare.model.minelike.RecordsBean>> newsList=new MutableLiveData<>();
 
@@ -24,7 +23,7 @@ public class HomeViewModel extends ViewModel {
 
     private String userid;
 
-    public HomeViewModel(String userid) {
+    public MineLikeViewModel(String userid) {
         this.userid=userid;
         shareModeLiast=new ArrayList<com.example.photoshare.model.minelike.RecordsBean>();
         getLikeDate();

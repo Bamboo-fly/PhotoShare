@@ -14,7 +14,7 @@
         android:background="#FFFFFF"
         app:layout_constraintTop_toTopOf="parent">
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <ImageView
             android:id="@+id/detail_icon"
             android:layout_width="30dp"
             android:layout_height="wrap_content"

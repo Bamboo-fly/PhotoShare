@@ -17,6 +17,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.photoshare.R;
 import com.example.photoshare.activity.AddShareActivity;
 import com.example.photoshare.activity.CaoGaoDetailActivity;
+import com.example.photoshare.activity.ShouCangActivity;
 import com.example.photoshare.model.caogao.RecordsBean;
 
 import java.util.List;
@@ -29,6 +30,10 @@ public class CaoGaoAdapter extends RecyclerView.Adapter<CaoGaoAdapter.caogaoView
     private static final String TAG = "CaoGaoAdapter";
 
     public CaoGaoAdapter(AddShareActivity addShareActivity, List<RecordsBean> caoGaoList) {
+        this.caoGaoList=caoGaoList;
+    }
+
+    public CaoGaoAdapter(ShouCangActivity addShareActivity, List<RecordsBean> caoGaoList) {
         this.caoGaoList=caoGaoList;
     }
 
@@ -46,9 +51,16 @@ public class CaoGaoAdapter extends RecyclerView.Adapter<CaoGaoAdapter.caogaoView
         RecordsBean caoGaoModel=caoGaoList.get(position);
         holder.title.setText(caoGaoModel.getTitle());
         holder.content.setText(caoGaoModel.getContent());
-        Glide.with(holder.itemView.getContext())
+        if (caoGaoModel.getImageUrlList().size()==0){
+            Glide.with(holder.itemView.getContext())
+                    .load(R.mipmap.zan_unclick)
+                    .into(holder.imageView);
+        }else {
+            Glide.with(holder.itemView.getContext())
                     .load(caoGaoModel.getImageUrlList().get(0))
                     .into(holder.imageView);
+        }
+
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

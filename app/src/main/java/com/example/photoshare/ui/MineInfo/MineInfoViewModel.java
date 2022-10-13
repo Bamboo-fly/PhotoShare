@@ -1,4 +1,4 @@
-package com.example.photoshare.ui.notifications;
+package com.example.photoshare.ui.MineInfo;
 
 import android.util.Log;
 
@@ -18,7 +18,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class NotificationsViewModel extends ViewModel {
+public class MineInfoViewModel extends ViewModel {
 
     private final MutableLiveData<List<RecordsBean>> minelist=new MutableLiveData<List<RecordsBean>>();
 
@@ -28,7 +28,7 @@ public class NotificationsViewModel extends ViewModel {
 
     private String userid;
 
-    public NotificationsViewModel(String userid) {
+    public MineInfoViewModel(String userid) {
         this.userid=userid;
         minephotolist=new ArrayList<>();
         getMineShareDate();

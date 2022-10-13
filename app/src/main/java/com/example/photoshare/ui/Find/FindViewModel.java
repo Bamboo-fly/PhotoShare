@@ -1,12 +1,7 @@
-package com.example.photoshare.ui.dashboard;
+package com.example.photoshare.ui.Find;
 
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.util.Log;
-import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -23,7 +18,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class DashboardViewModel extends ViewModel {
+public class FindViewModel extends ViewModel {
 
 
     private  MutableLiveData<List<RecordsBean>> newsList = new MutableLiveData<>();
@@ -35,7 +30,7 @@ public class DashboardViewModel extends ViewModel {
     private String userId;
     //用来借助Factory传递userid到ViewModel层
 
-    public DashboardViewModel(String userId) {
+    public FindViewModel(String userId) {
         this.userId=userId;
         shareModellist=new ArrayList<>();
         getShareDate();

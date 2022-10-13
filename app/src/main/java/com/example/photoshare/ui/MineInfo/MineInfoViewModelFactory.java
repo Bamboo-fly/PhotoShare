@@ -1,22 +1,20 @@
-package com.example.photoshare.ui.dashboard;
+package com.example.photoshare.ui.MineInfo;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-public class DashboardViewModelFactory implements ViewModelProvider.Factory {
-
+public class MineInfoViewModelFactory implements ViewModelProvider.Factory {
 
     private String userid;
 
-    public DashboardViewModelFactory(String userid){
-        this.userid=userid;
+    public MineInfoViewModelFactory(String user){
+        this.userid=user;
     }
 
     @NonNull
     @Override
     public <T extends ViewModel> T create(@NonNull Class<T> modelClass) {
-        return (T)new DashboardViewModel(userid);
-
+        return (T)new MineInfoViewModel(userid);
     }
 }

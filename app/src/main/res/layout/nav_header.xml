@@ -12,7 +12,7 @@
         android:layout_height="180dp"
         app:layout_constraintTop_toTopOf="parent">
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <ImageView
             android:id="@+id/avatar_icon"
             android:layout_width="80dp"
             android:layout_height="80dp"
