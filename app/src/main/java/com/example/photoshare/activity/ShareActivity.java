@@ -1,6 +1,12 @@
 package com.example.photoshare.activity;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
@@ -31,12 +37,15 @@ public class ShareActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private NavigationView navView;
 
+    private static final int SUCCESS = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityShareBinding.inflate(getLayoutInflater());
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(binding.getRoot());
+
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
         // Passing each menu ID as a set of Ids because each
@@ -125,4 +134,5 @@ public class ShareActivity extends AppCompatActivity {
         }
         return true;
     }
+
 }

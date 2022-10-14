@@ -17,6 +17,7 @@ import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.example.photoshare.R;
 import com.example.photoshare.activity.AddShareActivity;
 import com.example.photoshare.activity.CaoGaoDetailActivity;
+import com.example.photoshare.activity.GuanZhuActivity;
 import com.example.photoshare.activity.ShouCangActivity;
 import com.example.photoshare.model.caogao.RecordsBean;
 
@@ -34,6 +35,10 @@ public class CaoGaoAdapter extends RecyclerView.Adapter<CaoGaoAdapter.caogaoView
     }
 
     public CaoGaoAdapter(ShouCangActivity addShareActivity, List<RecordsBean> caoGaoList) {
+        this.caoGaoList=caoGaoList;
+    }
+
+    public CaoGaoAdapter(GuanZhuActivity addShareActivity, List<RecordsBean> caoGaoList) {
         this.caoGaoList=caoGaoList;
     }
 

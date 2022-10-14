@@ -1,6 +1,7 @@
 package com.example.photoshare.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -26,7 +27,6 @@ import com.example.photoshare.utils.RetrofitUtils;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -42,9 +42,12 @@ public class FindDetailActivity extends AppCompatActivity {
     private String caogao_title;
     private String caogao_content;
 
+    private String id;
+
 
     private ArrayList<String> images = new ArrayList<String>();
     private static final String TAG = "CaoGaoDetailActivity";
+    PinlunOneAdapter pinlunOneAdapter;
 
 
     @Override
@@ -71,34 +74,42 @@ public class FindDetailActivity extends AppCompatActivity {
 
         find_content(sharedate, user_id);
 
+
+
         activityFindDetailBinding.detailFollow.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
-                if (share_if_follow.equals("")) {
+                //在需要的事件中执行如下代码，发送刷新数据的广播
+                Intent intent2 = new Intent("zachary");
+                intent2.putExtra("refreshInfo", "yes");
+                LocalBroadcastManager.getInstance(FindDetailActivity.this).sendBroadcast(intent2);
+
+                if (share_if_follow.equals("false")) {
                     MineService mineService = RetrofitUtils.getInstance().getRetrofit().create(MineService.class);
                     Call<ShoucangModel> call = mineService.follow(share_puserid, user_id);
                     call.enqueue(new Callback<ShoucangModel>() {
                         @Override
                         public void onResponse(Call<ShoucangModel> call, Response<ShoucangModel> response) {
                             Toast.makeText(FindDetailActivity.this, "关注成功", Toast.LENGTH_SHORT).show();
-                            Log.d(TAG, "onResponse: " + response.body().getCode());
+                            Log.d(TAG, "onResponse: " + response.body().getMsg() + response.body().getCode());
                             activityFindDetailBinding.detailFollow.setText("已关注");
                         }
 
                         @Override
                         public void onFailure(Call<ShoucangModel> call, Throwable t) {
-
+                            Log.d(TAG, "关注请求失败");
                         }
                     });
-                }else {
+                }
+                    else {
                     MineService mineService = RetrofitUtils.getInstance().getRetrofit().create(MineService.class);
                     Call<ShoucangModel> call = mineService.unfollow(share_puserid, user_id);
                     call.enqueue(new Callback<ShoucangModel>() {
                         @Override
                         public void onResponse(Call<ShoucangModel> call, Response<ShoucangModel> response) {
                             Toast.makeText(FindDetailActivity.this, "已取消关注", Toast.LENGTH_SHORT).show();
-                            Log.d(TAG, "onResponse: " + response.body().getCode());
+                            Log.d(TAG, "onResponse: " + response.body().getMsg());
                             activityFindDetailBinding.detailFollow.setText("关注");
                         }
 
@@ -122,7 +133,7 @@ public class FindDetailActivity extends AppCompatActivity {
                 pinLun.setUserName("Umbrella".toString());
                 pinLun.setUserId(user_id);
                 Intent intent = getIntent();
-                pinLun.setShareId("12");
+                pinLun.setShareId(id);
                 Log.d(TAG, "" + user_id + " " + intent.getStringExtra("id"));
 
                 ShareService shareService = RetrofitUtils.getInstance().getRetrofit().create(ShareService.class);
@@ -132,10 +143,8 @@ public class FindDetailActivity extends AppCompatActivity {
                     public void onResponse(Call<PinLunBackModel> call, Response<PinLunBackModel> response) {
                         if (response.body().getCode() == 200) {
                             Toast.makeText(FindDetailActivity.this, "评论成功", Toast.LENGTH_SHORT).show();
-                            Intent intent1 = new Intent(FindDetailActivity.this, FindDetailActivity.class);
-                            intent1.putExtra("id", intent.getStringExtra("id"));
-                            startActivity(intent1);
                         }
+                        pinlunOneAdapter.notifyItemRangeChanged(0, 10);
                     }
 
                     @Override
@@ -145,6 +154,7 @@ public class FindDetailActivity extends AppCompatActivity {
                 });
             }
         });
+
     }
 
     public void find_content(String sharedate, String user_id) {
@@ -177,6 +187,7 @@ public class FindDetailActivity extends AppCompatActivity {
                 mAdapter = new FindDetailAdapter(FindDetailActivity.this, images);
                 activityFindDetailBinding.caogaoRv.setAdapter(mAdapter);
                 mAdapter.notifyDataSetChanged();
+                id=response.body().getData().getId();
 
                 find_pinlun(response.body().getData().getId());
             }
@@ -190,7 +201,7 @@ public class FindDetailActivity extends AppCompatActivity {
 
     public void find_pinlun(String shareId) {
         ShareService shareService = RetrofitUtils.getInstance().getRetrofit().create(ShareService.class);
-        Call<PinLunOneModel> call = shareService.pinlundate("12");
+        Call<PinLunOneModel> call = shareService.pinlundate(shareId);
         call.enqueue(new Callback<PinLunOneModel>() {
             @Override
             public void onResponse(Call<PinLunOneModel> call, Response<PinLunOneModel> response) {
@@ -199,7 +210,7 @@ public class FindDetailActivity extends AppCompatActivity {
                 }
 
                 activityFindDetailBinding.pinlunRv.setLayoutManager(new LinearLayoutManager(FindDetailActivity.this));
-                PinlunOneAdapter pinlunOneAdapter = new PinlunOneAdapter(response.body().getData().getRecords());
+                pinlunOneAdapter = new PinlunOneAdapter(response.body().getData().getRecords());
                 activityFindDetailBinding.pinlunRv.setAdapter(pinlunOneAdapter);
                 pinlunOneAdapter.notifyDataSetChanged();
 

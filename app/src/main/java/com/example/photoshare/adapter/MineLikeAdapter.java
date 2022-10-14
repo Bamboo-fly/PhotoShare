@@ -72,6 +72,13 @@ public class MineLikeAdapter extends RecyclerView.Adapter<MineLikeAdapter.MineLi
 //        holder.dianzan.setImageResource();
         holder.dianzan.setBackgroundResource(R.mipmap.zan_click);
 
+        if (sharelist.get(position).getHasCollect()){
+            holder.shoucang.setBackgroundResource(R.mipmap.col_click);
+        }
+        if (sharelist.get(position).getHasLike()){
+            holder.dianzan.setBackgroundResource(R.mipmap.zan_click);
+        }
+
         SharedPreferences sh = context.getSharedPreferences("user",0);
         userid=sh.getString("id", String.valueOf(1));
 

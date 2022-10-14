@@ -3,6 +3,9 @@ pluginManagement {
         gradlePluginPortal()
         google()
         mavenCentral()
+        maven { url 'https://jitpack.io' }
+        maven { url 'https://maven.aliyun.com/repository/google' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
     }
 }
 dependencyResolutionManagement {
@@ -12,6 +15,8 @@ dependencyResolutionManagement {
         mavenCentral()
         maven{ url 'https://maven.aliyun.com/repository/google'}
         maven { url 'https://jitpack.io' }
+        maven { url 'https://maven.aliyun.com/repository/jcenter' }
+
     }
 }
 rootProject.name = "PhotoShare"

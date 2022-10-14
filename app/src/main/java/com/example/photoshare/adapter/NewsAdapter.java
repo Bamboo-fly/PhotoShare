@@ -74,6 +74,14 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.newsViewHolder
         RecordsBean share=sharelist.get(position);
         holder.name.setText(share.getUsername());
         holder.title.setText(share.getTitle());
+        if (share.getHasCollect()){
+            holder.shoucang.setBackgroundResource(R.mipmap.col_click);
+        }
+        if (share.getHasLike()){
+            holder.dianzan.setBackgroundResource(R.mipmap.zan_click);
+        }
+
+
 
         SharedPreferences sh = context.getSharedPreferences("user",0);
         userid=sh.getString("id", String.valueOf(1));
@@ -125,7 +133,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.newsViewHolder
                intent.putExtra("id",share.getId());
                intent.putExtra("follow",share.getPUserId());
                intent.putExtra("if_follow",share.getHasFocus().toString());
-                Log.d(TAG, "onClick: "+share.getHasFocus().toString());
+               Log.d(TAG, "onClick: "+share.getHasFocus().toString());
                holder.itemView.getContext().startActivity(intent);
             }
         });

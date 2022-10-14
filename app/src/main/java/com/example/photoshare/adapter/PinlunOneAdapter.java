@@ -41,6 +41,7 @@ public class PinlunOneAdapter extends RecyclerView.Adapter<PinlunOneAdapter.Pinl
         }else{
             holder.content.setText(list.get(position).getContent());
         }
+
     }
 
     @Override
@@ -53,6 +54,7 @@ public class PinlunOneAdapter extends RecyclerView.Adapter<PinlunOneAdapter.Pinl
         public PinlunViewHolder(@NonNull View itemView) {
             super(itemView);
             content=itemView.findViewById(R.id.pinlun_content);
+
         }
     }
 

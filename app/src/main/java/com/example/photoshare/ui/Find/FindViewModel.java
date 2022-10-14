@@ -51,8 +51,15 @@ public class FindViewModel extends ViewModel {
             public void onResponse(Call<ShareModel> call, Response<ShareModel> response) {
                 ShareModel shareModel = response.body();
                 Log.d(TAG, "onResponse: "+shareModel.getData());
+
                 if (shareModel.getData()!=null){
+
+//                    for (int i=0;i<shareModel.getData().getRecords().size();i++){
+//                        shareModel.getData().getRecords().get(i).getImageUrlList();
+//                    }
                     shareModellist.addAll(shareModel.getData().getRecords());
+
+
                 }else{
                     Log.d(TAG, "请求次数用尽");
                 }
