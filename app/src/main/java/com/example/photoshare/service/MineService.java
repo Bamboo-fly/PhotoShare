@@ -1,5 +1,6 @@
 package com.example.photoshare.service;
 
+import com.example.photoshare.model.caogao.CaoGaoModel;
 import com.example.photoshare.model.minelike.MineLikeModel;
 import com.example.photoshare.model.shoucang.ShoucangModel;
 import com.example.photoshare.model.user.UserModel;
@@ -29,7 +30,7 @@ public interface MineService {
     })
     @POST("member/photo/like/cancel")
     Call<ShoucangModel> undianzan(@Query("likeId") int likeId);
-   //取消点赞
+    //取消点赞
 
     @Headers({
             "appId:f62a6fdf7e924109896fc639a7cfdcc9",
@@ -38,20 +39,25 @@ public interface MineService {
     @GET("member/photo/like")
     Call<MineLikeModel> minelike(@Query("userId") String userId);
 
+    @Headers({
+            "appId:f62a6fdf7e924109896fc639a7cfdcc9",
+            "appSecret:33287e5eb1869eb7b4498a9a84a2211a593ff"
+    })
+    @POST("member/photo/collect")
+    Call<ShoucangModel> collect(@Query("shareId") int password, @Query("userId") String username);
 
     @Headers({
             "appId:f62a6fdf7e924109896fc639a7cfdcc9",
             "appSecret:33287e5eb1869eb7b4498a9a84a2211a593ff"
     })
-    @POST("/member/photo/collect")
-    Call<ShoucangModel> shoucang(@Query("shareId") int password, @Query("userId") String username);
-    //收藏
+    @POST("member/photo/collect/cancel")
+    Call<ShoucangModel> uncollect(@Query("collectId") String collectId);
 
     @Headers({
             "appId:f62a6fdf7e924109896fc639a7cfdcc9",
             "appSecret:33287e5eb1869eb7b4498a9a84a2211a593ff"
     })
-    @POST("member/photo/like/cancel")
-    Call<ShoucangModel> unshoucang(@Query("likeId") int likeId);
-    //取消收藏
+    @GET("member/photo/collect")
+    Call<CaoGaoModel> minecollect(@Query("userId") String userId);
+
 }

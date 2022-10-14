@@ -168,29 +168,29 @@ public class UploadActivity extends AppCompatActivity {
     }
 
     private void getclock(){
-        activityUploadBinding.btnSingle.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //单选
-                ImageSelector.builder()
-                        .useCamera(true) // 设置是否使用拍照
-                        .setSingle(true)  //设置是否单选
-                        .canPreview(true) //是否点击放大图片查看,，默认为true
-                        .start(UploadActivity.this, REQUEST_CODE); // 打开相册
-            }
-        });
+//        activityUploadBinding.btnSingle.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                //单选
+//                ImageSelector.builder()
+//                        .useCamera(true) // 设置是否使用拍照
+//                        .setSingle(true)  //设置是否单选
+//                        .canPreview(true) //是否点击放大图片查看,，默认为true
+//                        .start(UploadActivity.this, REQUEST_CODE); // 打开相册
+//            }
+//        });
 
-        activityUploadBinding.btnLimit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ImageSelector.builder()
-                        .useCamera(true) // 设置是否使用拍照
-                        .setSingle(false)  //设置是否单选
-                        .canPreview(true) //是否点击放大图片查看,，默认为true
-                        .setMaxSelectCount(9) // 图片的最大选择数量，小于等于0时，不限数量。
-                        .start(UploadActivity.this, REQUEST_CODE); // 打开相册
-            }
-        });
+//        activityUploadBinding.btnLimit.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                ImageSelector.builder()
+//                        .useCamera(true) // 设置是否使用拍照
+//                        .setSingle(false)  //设置是否单选
+//                        .canPreview(true) //是否点击放大图片查看,，默认为true
+//                        .setMaxSelectCount(9) // 图片的最大选择数量，小于等于0时，不限数量。
+//                        .start(UploadActivity.this, REQUEST_CODE); // 打开相册
+//            }
+//        });
 
         activityUploadBinding.btnUnlimited.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -217,14 +217,14 @@ public class UploadActivity extends AppCompatActivity {
             }
         });
 
-        activityUploadBinding.btnOnlyTake.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                ImageSelector.builder()
-                        .onlyTakePhoto(true)  // 仅拍照，不打开相册
-                        .start(UploadActivity.this, REQUEST_CODE);
-            }
-        });
+//        activityUploadBinding.btnOnlyTake.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                ImageSelector.builder()
+//                        .onlyTakePhoto(true)  // 仅拍照，不打开相册
+//                        .start(UploadActivity.this, REQUEST_CODE);
+//            }
+//        });
 
         activityUploadBinding.btnTakeAndClip.setOnClickListener(new View.OnClickListener() {
             @Override

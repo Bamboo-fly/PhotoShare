@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- 点击时背景变灰-->
+    <item android:state_pressed="false">
+        <shape>
+            <!--背景-->
+            <solid android:color="#48ae89" />
+            <!--梯度-->
+            <gradient android:endColor="#48ae89" android:startColor="#48ae89" />
+            <!--圆角-->
+            <corners android:radius="30dp" />
+            <!--边距-->
+            <padding android:bottom="2dp" android:left="6dp" android:right="6dp" android:top="2dp" />
+        </shape>
+    </item>
+    <item android:state_pressed="true">
+        <shape>
+            <!--背景-->
+            <solid android:color="#2C9972" />
+            <!--梯度-->
+            <gradient android:endColor="#2C9972" android:startColor="#2C9972" />
+            <!--圆角-->
+            <corners android:radius="30dp" />
+            <!--边距-->
+            <padding android:bottom="2dp" android:left="6dp" android:right="6dp" android:top="2dp" />
+        </shape>
+    </item>
+</selector>

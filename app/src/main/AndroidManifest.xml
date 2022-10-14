@@ -24,9 +24,6 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
-            android:name=".activity.PinlunActivity"
-            android:exported="false" />
-        <activity
             android:name=".activity.FindDetailActivity"
             android:launchMode="singleTask"
             android:exported="false" />

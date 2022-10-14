@@ -1,6 +1,5 @@
 package com.example.photoshare.activity;
 
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -9,7 +8,6 @@ import android.widget.Toast;
 
 
 import com.example.photoshare.R;
-import com.example.photoshare.ui.notifications.NotificationsViewModel;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
@@ -17,7 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -69,10 +66,11 @@ public class ShareActivity extends AppCompatActivity {
         setSupportActionBar(tool_bar);
         //显示 tool_bar左侧按钮
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        //设置 tool_bar左侧按钮图标
-        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_dashboard_black_24dp);
+        getSupportActionBar().setTitle(R.string.emptytext);
         //设置 note_group为默认选中
         navView.setCheckedItem(R.id.note_group);
+
+
     }
 
     private void listen() {

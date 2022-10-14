@@ -152,7 +152,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.newsViewHolder
         call.enqueue(new Callback<ShoucangModel>() {
             @Override
             public void onResponse(Call<ShoucangModel> call, Response<ShoucangModel> response) {
-                Log.d(TAG, "onResponse: "+"收藏成功"+response.body().getMsg()+" "+sharelist.get(position).getLikeId());
+                Log.d(TAG, "onResponse: "+"点赞成功"+response.body().getMsg()+" "+sharelist.get(position).getLikeId());
             }
 
             @Override
@@ -178,11 +178,42 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.newsViewHolder
 
                 @Override
                 public void onFailure(Call<ShoucangModel> call, Throwable t) {
+                    Log.d(TAG, "取消点赞失败");
 
                 }
             });
         }
-
-
     }
+
+
+    public void collected(List<RecordsBean> sharelist,int position){
+        Call<ShoucangModel> call=mineService.collect(Integer.parseInt(sharelist.get(position).getId()),userid);
+        call.enqueue(new Callback<ShoucangModel>() {
+            @Override
+            public void onResponse(Call<ShoucangModel> call, Response<ShoucangModel> response) {
+                Log.d(TAG, "收藏成功");
+            }
+
+            @Override
+            public void onFailure(Call<ShoucangModel> call, Throwable t) {
+                Log.d(TAG, "收藏失败");
+            }
+        });
+    }
+
+    public void uncollected(List<RecordsBean> sharelist,int position){
+        Call<ShoucangModel> call=mineService.uncollect((String) sharelist.get(position).getCollectId());
+        call.enqueue(new Callback<ShoucangModel>() {
+            @Override
+            public void onResponse(Call<ShoucangModel> call, Response<ShoucangModel> response) {
+                Log.d(TAG, "取消收藏成功");
+            }
+
+            @Override
+            public void onFailure(Call<ShoucangModel> call, Throwable t) {
+                Log.d(TAG, "取消收藏失败");
+            }
+        });
+    }
+
 }
