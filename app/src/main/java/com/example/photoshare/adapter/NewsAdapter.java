@@ -95,8 +95,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.newsViewHolder
                a++;
                if (a%2==1){
                    holder.shoucang.setBackgroundResource(R.mipmap.col_click);
+                   collected(sharelist,position);
                }else{
                    holder.shoucang.setBackgroundResource(R.mipmap.col_unclick);
+                   uncollected(sharelist,position);
                }
 
             }
@@ -121,7 +123,9 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.newsViewHolder
             public void onClick(View view) {
                Intent intent =new Intent(holder.itemView.getContext(), FindDetailActivity.class);
                intent.putExtra("id",share.getId());
-                Log.d(TAG, "onClick: "+share.getId());
+               intent.putExtra("follow",share.getPUserId());
+               intent.putExtra("if_follow",share.getHasFocus().toString());
+                Log.d(TAG, "onClick: "+share.getHasFocus().toString());
                holder.itemView.getContext().startActivity(intent);
             }
         });

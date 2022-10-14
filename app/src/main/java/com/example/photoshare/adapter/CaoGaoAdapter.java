@@ -51,16 +51,17 @@ public class CaoGaoAdapter extends RecyclerView.Adapter<CaoGaoAdapter.caogaoView
         RecordsBean caoGaoModel=caoGaoList.get(position);
         holder.title.setText(caoGaoModel.getTitle());
         holder.content.setText(caoGaoModel.getContent());
-        if (caoGaoModel.getImageUrlList().size()==0){
-            Glide.with(holder.itemView.getContext())
-                    .load(R.mipmap.zan_unclick)
-                    .into(holder.imageView);
-        }else {
-            Glide.with(holder.itemView.getContext())
-                    .load(caoGaoModel.getImageUrlList().get(0))
-                    .into(holder.imageView);
+        if (caoGaoModel.getImageUrlList()!=null){
+            if (caoGaoModel.getImageUrlList().size()==0){
+                Glide.with(holder.itemView.getContext())
+                        .load(R.mipmap.zan_unclick)
+                        .into(holder.imageView);
+            }else {
+                Glide.with(holder.itemView.getContext())
+                        .load(caoGaoModel.getImageUrlList().get(0))
+                        .into(holder.imageView);
+            }
         }
-
 
 
         holder.itemView.setOnClickListener(new View.OnClickListener() {

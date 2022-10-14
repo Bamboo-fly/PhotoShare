@@ -43,7 +43,12 @@ public class CaoGaoDetailAdapter extends RecyclerView.Adapter<LoadImageAdapter.V
 
     @Override
     public int getItemCount() {
-        return fabuModelList.size();
+        if (fabuModelList!=null){
+            return fabuModelList.size();
+        }else{
+            return 0;
+        }
+
     }
 
     static class caogaoViewHolder extends RecyclerView.ViewHolder{

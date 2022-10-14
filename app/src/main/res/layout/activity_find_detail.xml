@@ -53,22 +53,7 @@
             android:layout_marginRight="16dp"
             android:layout_marginBottom="5dp"
             android:background="@drawable/rounded_background_primary"
-            android:text="+ 关注"
-
-            android:textColor="@color/white"
-            android:textSize="16sp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <Button
-            android:id="@+id/detail_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="0dp"
-            android:visibility="invisible"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="16dp"
-            android:layout_marginBottom="5dp"
-            android:text="✖ 删除"
+            android:text="关注"
             android:textColor="@color/white"
             android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"

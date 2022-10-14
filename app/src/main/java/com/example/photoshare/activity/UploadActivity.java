@@ -106,8 +106,8 @@ public class UploadActivity extends AppCompatActivity {
 
             // 请求头
             Headers headers = new Headers.Builder()
-                    .add("appId", "f62a6fdf7e924109896fc639a7cfdcc9")
-                    .add("appSecret", "33287e5eb1869eb7b4498a9a84a2211a593ff")
+                    .add("appId", "52113a57a0254e1a8c0082a6817e9c9a")
+                    .add("appSecret", "08058f75e3672da8a40b082d4f1ad89b281f1")
                     .add("Accept", "application/json, text/plain, */*")
                     .build();
 

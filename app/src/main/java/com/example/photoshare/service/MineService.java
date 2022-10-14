@@ -35,4 +35,11 @@ public interface MineService {
     @GET("member/photo/collect")
     Call<CaoGaoModel> minecollect(@Query("userId") String userId);
 
+    @POST("member/photo/focus")
+    Call<ShoucangModel> follow(@Query("focusUserId") String focusUserId, @Query("userId") String username);
+
+    @POST("member/photo/focus/cancel")
+    Call<ShoucangModel> unfollow(@Query("focusUserId") String focusUserId, @Query("userId") String username);
+
+
 }

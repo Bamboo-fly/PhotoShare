@@ -46,16 +46,20 @@ public class MinePhotoAdapter extends RecyclerView.Adapter<MinePhotoAdapter.Main
         holder.title.setText(recordsBean.getTitle());
         holder.content.setText(recordsBean.getContent());
 
-        if(list.get(position).getImageUrlList().size()!=0){
-            Log.d(TAG, "onBindViewHolder: "+list.get(position).getImageUrlList());
-            Glide.with(holder.itemView.getContext())
-                    .load(list.get(position).getImageUrlList().get(0))
-                    .into(holder.photo);
-        }else{
-            Glide.with(holder.itemView.getContext())
-                    .load(R.drawable.ic_dashboard_black_24dp)
-                    .into(holder.photo);
+        Log.d(TAG, "onBindViewHolder: "+list.get(position).getImageUrlList());
+        if (list.get(position).getImageUrlList()!=null){
+            if(list.get(position).getImageUrlList().size()!=0){
+                Log.d(TAG, "onBindViewHolder: "+list.get(position).getImageUrlList());
+                Glide.with(holder.itemView.getContext())
+                        .load(list.get(position).getImageUrlList().get(0))
+                        .into(holder.photo);
+            }else{
+                Glide.with(holder.itemView.getContext())
+                        .load(R.drawable.ic_dashboard_black_24dp)
+                        .into(holder.photo);
+            }
         }
+
     }
 
     @Override

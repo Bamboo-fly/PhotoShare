@@ -39,7 +39,12 @@ public class FindDetailAdapter extends RecyclerView.Adapter<LoadImageAdapter.Vie
 
     @Override
     public int getItemCount() {
-        return fabuModelList.size();
+        if (fabuModelList!=null){
+            return fabuModelList.size();
+        }else{
+            return 0;
+        }
+
     }
 
     static class FindDetailViewHolder extends RecyclerView.ViewHolder{
