@@ -9,7 +9,7 @@
                 android:right="2dp"
                 android:top="2.5dp"
                 />
-            <solid android:color="#94a3b8"/>
+            <solid android:color="#e2e8f0"/>
             <corners android:radius="8dp"/>
         </shape>
     </item>

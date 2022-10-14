@@ -125,6 +125,4 @@ public class ShareActivity extends AppCompatActivity {
         }
         return true;
     }
-
-
 }

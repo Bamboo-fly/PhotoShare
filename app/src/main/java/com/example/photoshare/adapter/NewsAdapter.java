@@ -92,14 +92,12 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.newsViewHolder
         holder.shoucang.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                a++;
-                if (a%2==1){
-                    holder.shoucang.setImageResource(R.mipmap.col_click);
-                    collected(sharelist,position);
-                }else{
-                    holder.shoucang.setImageResource(R.mipmap.col_unclick);
-                    uncollected(sharelist,position);
-                }
+               a++;
+               if (a%2==1){
+                   holder.shoucang.setBackgroundResource(R.mipmap.col_click);
+               }else{
+                   holder.shoucang.setBackgroundResource(R.mipmap.col_unclick);
+               }
 
             }
         });
@@ -109,10 +107,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.newsViewHolder
             public void onClick(View view) {
                 b++;
                 if (b%2==1){
-                    holder.dianzan.setImageResource(R.mipmap.zan_click);
+                    holder.dianzan.setBackgroundResource(R.mipmap.zan_click);
                     dianzan(sharelist,position);
                 }else{
-                    holder.dianzan.setImageResource(R.mipmap.zan_unclick);
+                    holder.dianzan.setBackgroundResource(R.mipmap.zan_unclick);
                     undianzan(sharelist,position);
                 }
             }
@@ -121,10 +119,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.newsViewHolder
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent =new Intent(holder.itemView.getContext(), FindDetailActivity.class);
-                intent.putExtra("id",share.getId());
+               Intent intent =new Intent(holder.itemView.getContext(), FindDetailActivity.class);
+               intent.putExtra("id",share.getId());
                 Log.d(TAG, "onClick: "+share.getId());
-                holder.itemView.getContext().startActivity(intent);
+               holder.itemView.getContext().startActivity(intent);
             }
         });
     }
