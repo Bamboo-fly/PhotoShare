@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -133,6 +134,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.newsViewHolder
                intent.putExtra("id",share.getId());
                intent.putExtra("follow",share.getPUserId());
                intent.putExtra("if_follow",share.getHasFocus().toString());
+               intent.putExtra("photolist",share);
                Log.d(TAG, "onClick: "+share.getHasFocus().toString());
                holder.itemView.getContext().startActivity(intent);
             }

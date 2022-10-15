@@ -12,12 +12,17 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CircleCrop;
+import com.bumptech.glide.request.RequestOptions;
+import com.example.photoshare.R;
 import com.example.photoshare.adapter.FindDetailAdapter;
 import com.example.photoshare.adapter.PinlunOneAdapter;
 import com.example.photoshare.databinding.ActivityFindDetailBinding;
 import com.example.photoshare.model.fabu.FabuModel;
 import com.example.photoshare.model.pinlun1.PinLunOneModel;
 import com.example.photoshare.model.pinlunback.PinLunBackModel;
+import com.example.photoshare.model.share.RecordsBean;
 import com.example.photoshare.model.shoucang.ShoucangModel;
 import com.example.photoshare.postentity.PinLun;
 import com.example.photoshare.service.MineService;
@@ -61,8 +66,11 @@ public class FindDetailActivity extends AppCompatActivity {
         String sharedate = intent.getStringExtra("id");
         String share_puserid = intent.getStringExtra("follow");
         String share_if_follow = intent.getStringExtra("if_follow");
+        RecordsBean recordsBean=(RecordsBean)intent.getSerializableExtra("photolist");
         SharedPreferences sh = getSharedPreferences("user", 0);
         String user_id = sh.getString("id", "未找到用户ID");
+        images= (ArrayList<String>) recordsBean.getImageUrlList();
+        Log.d(TAG, "onCreate: "+images);
 
         if (share_if_follow.equals("false")){
                     activityFindDetailBinding.detailFollow.setText("关注");
@@ -74,7 +82,10 @@ public class FindDetailActivity extends AppCompatActivity {
 
         find_content(sharedate, user_id);
 
-
+        Glide.with(FindDetailActivity.this)
+                .load(R.drawable.icon)
+                .apply(RequestOptions.bitmapTransform(new CircleCrop()))
+                .into(activityFindDetailBinding.detailIcon);
 
         activityFindDetailBinding.detailFollow.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -165,7 +176,6 @@ public class FindDetailActivity extends AppCompatActivity {
             public void onResponse(Call<FabuModel> call, Response<FabuModel> response) {
                 caogao_content = response.body().getData().getContent();
                 caogao_title = response.body().getData().getTitle();
-                images = response.body().getData().getImageUrlList();
                 activityFindDetailBinding.detailUsername.setText(response.body().getData().getTitle());
 
                 SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -179,6 +189,7 @@ public class FindDetailActivity extends AppCompatActivity {
                         images.add("https://guet-lab.oss-cn-hangzhou.aliyuncs.com/api/2022/10/04/6df54a80-7801-4b7e-8d9f-05c9df929288.png");
                     }
                 }
+
                 activityFindDetailBinding.caogaoTitle.setText(caogao_title);
                 activityFindDetailBinding.caogaoContent.setText(caogao_content);
                 Log.d(TAG, "onResponse: " + images);

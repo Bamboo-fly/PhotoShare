@@ -32,8 +32,8 @@ public class RetrofitUtils {
             @Override
             public Response intercept(Chain chain) throws IOException {
                 Request request = chain.request().newBuilder()
-                        .addHeader("appId", "7cf1a6087a58444ebf6c17ee75619a78")
-                        .addHeader("appSecret", "523704e942d7c47f44646ab8d2de7b7e3a8a6")
+                        .addHeader("appId", "52113a57a0254e1a8c0082a6817e9c9a")
+                        .addHeader("appSecret", "08058f75e3672da8a40b082d4f1ad89b281f1")
                         .build();
                 // 开始请求
                 return chain.proceed(request);
