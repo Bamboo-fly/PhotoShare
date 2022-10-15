@@ -1,8 +1,9 @@
 package com.example.photoshare.model.caogao;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class RecordsBean {
+public class RecordsBean implements Serializable {
     private String id;
     private String pUserId;
     private String imageCode;

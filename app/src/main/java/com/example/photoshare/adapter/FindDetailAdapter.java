@@ -12,6 +12,8 @@ import com.bumptech.glide.Glide;
 import com.example.photoshare.R;
 import com.example.photoshare.activity.CaoGaoDetailActivity;
 import com.example.photoshare.activity.FindDetailActivity;
+import com.example.photoshare.activity.FindLikeDetailActivity;
+import com.example.photoshare.activity.FindMineDetailActivity;
 
 import java.util.ArrayList;
 
@@ -20,6 +22,14 @@ public class FindDetailAdapter extends RecyclerView.Adapter<LoadImageAdapter.Vie
     private static final String TAG = "CaoGaoDetailAdapter";
 
     public FindDetailAdapter(FindDetailActivity findDetailActivity, ArrayList<String> fabuModels){
+        this.fabuModelList=fabuModels;
+    }
+
+    public FindDetailAdapter(FindMineDetailActivity findDetailActivity, ArrayList<String> fabuModels){
+        this.fabuModelList=fabuModels;
+    }
+
+    public FindDetailAdapter(FindLikeDetailActivity findDetailActivity, ArrayList<String> fabuModels){
         this.fabuModelList=fabuModels;
     }
 

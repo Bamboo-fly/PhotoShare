@@ -2,6 +2,7 @@ package com.example.photoshare.adapter;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.photoshare.R;
+import com.example.photoshare.activity.FindMineDetailActivity;
 import com.example.photoshare.model.minelike.MineLikeModel;
 import com.example.photoshare.model.share.RecordsBean;
 import com.example.photoshare.model.shoucang.ShoucangModel;
@@ -119,6 +121,20 @@ public class MineLikeAdapter extends RecyclerView.Adapter<MineLikeAdapter.MineLi
                 }
             }
         });
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(holder.itemView.getContext(), FindMineDetailActivity.class);
+                intent.putExtra("id",recordsBean.getId());
+                intent.putExtra("follow",recordsBean.getPUserId());
+                intent.putExtra("if_follow",recordsBean.getHasFocus().toString());
+                intent.putExtra("photolist", recordsBean);
+                Log.d(TAG, "onClick: "+recordsBean.getHasFocus().toString());
+                holder.itemView.getContext().startActivity(intent);
+            }
+        });
+
     }
 
     @Override
