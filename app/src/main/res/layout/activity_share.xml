@@ -78,17 +78,5 @@ tools:context=".activity.ShareActivity">
     app:headerLayout="@layout/nav_header"
     >
 </com.google.android.material.navigation.NavigationView>
-<!--通过app:menu和app:headerLayout属性将刚刚准备的menu和headerLayout设置进去-->
-<!--
-android:layout_gravity="start"
-告诉滑动菜单在左在右
-start 属性自动判断
-英语、汉语，滑动菜单在左边-->
-<!--
-?attr/actionBarSize => @dimen/mtrl_toolbar_default_height => 56dp
-android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-使toolbar单独使用深色主题(因为浅色主题的toolbar文字是黑色的，不好看)
-app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-使toolbar的弹出菜单使用浅色主题
--->
+
 </androidx.drawerlayout.widget.DrawerLayout>
