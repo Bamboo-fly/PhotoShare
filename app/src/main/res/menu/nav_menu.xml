@@ -4,15 +4,12 @@
     <group android:checkableBehavior="single">
         <!--android:checkableBehavior="single" 设置组中item只能单选-->
         <item
-            android:id="@+id/note_group"
-            android:title="ID"/>
-        <item
             android:id="@+id/note_collect"
-            android:title="用户名"
+            android:title="退出登录"
             />
         <item
             android:id="@+id/note_setting"
-            android:title="性别"
+            android:title="聊天室"
             />
     </group>
 </menu>

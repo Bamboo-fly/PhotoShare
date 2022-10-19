@@ -16,9 +16,5 @@
         android:icon="@mipmap/main"
         android:title="@string/title_mine" />
 
-    <item
-        android:id="@+id/talkFragment"
-        android:icon="@mipmap/main"
-        android:title="聊天室" />
 
 </menu>

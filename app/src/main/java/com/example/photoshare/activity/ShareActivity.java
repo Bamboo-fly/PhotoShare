@@ -9,11 +9,14 @@ import android.os.Looper;
 import android.os.Message;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 
 import com.example.photoshare.R;
+import com.example.photoshare.ui.Talk.TalkActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.annotation.NonNull;
@@ -43,18 +46,20 @@ public class ShareActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = ActivityShareBinding.inflate(getLayoutInflater());
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN); //隐藏状态栏
         supportRequestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(binding.getRoot());
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
 
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.navigation_dashboard,R.id.navigation_home, R.id.navigation_notifications,R.id.talkFragment)
+                R.id.navigation_dashboard,R.id.navigation_home, R.id.navigation_notifications)
                 .build();
 
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_share);
         //NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(binding.navView, navController);
+
 
         init();
         listen();
@@ -75,7 +80,6 @@ public class ShareActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         getSupportActionBar().setTitle(R.string.emptytext);
         //设置 note_group为默认选中
-        navView.setCheckedItem(R.id.note_group);
 
 
     }
@@ -87,9 +91,6 @@ public class ShareActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 //显示 当前点击了哪个item
                 switch (item.getItemId()) {
-                    case R.id.note_group:
-                        Toast.makeText(getApplication(), "你点击了note_group", Toast.LENGTH_SHORT).show();
-                        break;
                     case R.id.note_collect:
                         Toast.makeText(getApplication(), "你点击了note_collect", Toast.LENGTH_SHORT).show();
                         break;
@@ -120,14 +121,13 @@ public class ShareActivity extends AppCompatActivity {
                 //openDrawer() 传入gravity参数 确保这里的行为和xml中定义的一致
                 drawerLayout.openDrawer(GravityCompat.START);
                 break;
-            case R.id.note_group:
-                Toast.makeText(this, "you clicked love", Toast.LENGTH_SHORT).show();
-                break;
             case R.id.note_collect:
-                Toast.makeText(this, "you clicked save", Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(this, MainActivity.class);
+                startActivity(intent);
                 break;
             case R.id.note_setting:
-                Toast.makeText(this, "you clicked rewrite", Toast.LENGTH_SHORT).show();
+                Intent intent2=new Intent(this, TalkActivity.class);
+                startActivity(intent2);
                 break;
         }
         return true;
