@@ -17,6 +17,8 @@
         <Button
             android:id="@+id/guanzhu"
             android:layout_width="0dp"
+            android:layout_marginRight="3dp"
+            android:layout_marginLeft="5dp"
             android:layout_height="wrap_content"
             android:text="关注列表"
             android:layout_weight="1"/>
@@ -24,6 +26,8 @@
         <Button
             android:id="@+id/shoucang"
             android:layout_width="0dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginLeft="3dp"
             android:layout_height="wrap_content"
             android:text="收藏列表"
             android:layout_weight="1"/>
